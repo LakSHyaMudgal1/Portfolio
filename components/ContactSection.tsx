@@ -63,18 +63,28 @@ export function ContactSection() {
         body: JSON.stringify(formState),
       });
 
-      const data = await res.json();
+      let data: { error?: string; message?: string } = {};
+      try {
+        data = await res.json();
+      } catch {
+        throw new Error("Server returned an invalid response. Please try emailing directly.");
+      }
 
       if (!res.ok) {
         throw new Error(data.error || "Failed to send message.");
       }
 
       setStatus("success");
-      setStatusMessage("Message sent successfully! I'll get back to you promptly.");
+      setStatusMessage(data.message || "Message sent successfully! I'll get back to you promptly.");
       setFormState({ name: "", email: "", message: "" });
     } catch (err: unknown) {
       setStatus("error");
-      setStatusMessage(err instanceof Error ? err.message : "Something went wrong. Please email directly.");
+      const messageText = err instanceof Error ? err.message : "";
+      if (!messageText || messageText.includes("Failed to fetch") || messageText.includes("NetworkError")) {
+        setStatusMessage(`Could not connect to service. Please try again or email directly at ${PERSONAL_INFO.socials.email}`);
+      } else {
+        setStatusMessage(messageText);
+      }
     }
   };
 
