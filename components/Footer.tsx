@@ -30,7 +30,7 @@ export function Footer() {
               LAKSHYA MUDGAL
             </div>
             <p className="text-xs font-mono text-slate-500">
-              Final-Year B.Tech IT • IIIT Una &apos;26 • Full-Stack Developer
+              B.Tech IT • IIIT Una &apos;27 • Full-Stack Developer
             </p>
           </div>
 

@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Lakshya Mudgal — Portfolio",
     short_name: "Lakshya Mudgal",
-    description: "Portfolio of Lakshya Mudgal, Full-Stack Software Engineer & Final-Year B.Tech IT at IIIT Una.",
+    description: "Portfolio of Lakshya Mudgal, Full-Stack Software Engineer & B.Tech IT at IIIT Una ('27).",
     start_url: "/",
     display: "standalone",
     background_color: "#08090d",

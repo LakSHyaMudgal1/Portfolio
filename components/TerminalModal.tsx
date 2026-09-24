@@ -137,7 +137,7 @@ export function TerminalModal() {
         outputNode = (
           <div className="space-y-1 text-xs text-slate-300 leading-relaxed">
             <div><span className="text-sky-300 font-semibold">Name:</span> {PERSONAL_INFO.name}</div>
-            <div><span className="text-sky-300 font-semibold">Education:</span> Final-Year B.Tech IT, IIIT Una (Graduating 2026)</div>
+            <div><span className="text-sky-300 font-semibold">Education:</span> B.Tech IT, IIIT Una (Graduating 2027)</div>
             <div><span className="text-sky-300 font-semibold">Focus:</span> Full-Stack Systems, Real-time Architectures, Distributed APIs</div>
             <div><span className="text-sky-300 font-semibold">Status:</span> {PERSONAL_INFO.status}</div>
           </div>

@@ -25,16 +25,16 @@ export interface SkillCategory {
 export const PERSONAL_INFO = {
   name: "Lakshya Mudgal",
   shortName: "Lakshya",
-  title: "Final-Year B.Tech IT Student • Full-Stack Developer",
+  title: "B.Tech IT Student ('27) • Full-Stack Developer",
   tagline: "Building products, solving problems.",
-  bio: "Final-year B.Tech IT student at IIIT Una focused on full-stack development, real-time systems and scalable software.",
+  bio: "B.Tech IT student at IIIT Una (Class of '27) focused on full-stack development, real-time systems and scalable software.",
   aboutExtended:
     "Engineering with curiosity, building with intent. Working across frontend, backend, mobile and cloud infrastructure with deep appreciation for clean architecture, systems performance, and real-time reliability.",
   status: "Open to software engineering opportunities",
   education: {
     degree: "B.Tech in Information Technology",
     institution: "Indian Institute of Information Technology (IIIT) Una",
-    status: "Final Year Student",
+    status: "B.Tech IT Student (Class of 2027)",
   },
   socials: {
     github: "https://github.com/LakSHyaMudgal1",
@@ -1151,8 +1151,8 @@ export const NOW_STATUS = {
     detail: "Deepening benchmarks on hardware Translation Lookaside Buffers, cache replacement, and OS kernel scheduling.",
   },
   preparing: {
-    title: "Software Engineering Opportunities (2026 Grad)",
-    detail: "Final-year B.Tech IT student at IIIT Una available for Full-Time Software Engineering & Full-Stack roles.",
+    title: "Software Engineering Opportunities (2027 Grad)",
+    detail: "B.Tech IT student at IIIT Una (Class of '27) available for Software Engineering & Full-Stack roles.",
   },
   location: "IIIT Una, Himachal Pradesh, India • Open to Relocation & Remote",
 };

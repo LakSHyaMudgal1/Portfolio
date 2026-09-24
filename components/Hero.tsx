@@ -20,8 +20,8 @@ const CORE_STACK = [
 const RECRUITER_SIGNALS = [
   {
     tag: "EDUCATION & DEGREE",
-    title: "Final-Year B.Tech IT",
-    subtitle: "IIIT Una ('26) • Full-Stack Focus",
+    title: "B.Tech IT ('27 Batch)",
+    subtitle: "IIIT Una ('27) • Full-Stack Focus",
     href: "#about",
     accent: "text-sky-300",
   },
@@ -191,7 +191,7 @@ export function Hero() {
             variants={itemVariants}
             className="text-base sm:text-lg md:text-xl text-slate-300 font-light leading-relaxed max-w-2xl mb-6 text-balance"
           >
-            Final-year B.Tech IT student at <span className="text-white font-medium">IIIT Una</span> specializing in <span className="text-sky-300 font-medium">React, Node.js, and TypeScript</span>. Real-world production internship experience, high-throughput real-time architectures, and open-source contributions.
+            B.Tech IT student at <span className="text-white font-medium">IIIT Una</span> (Class of &apos;27) specializing in <span className="text-sky-300 font-medium">React, Node.js, and TypeScript</span>. Real-world production internship experience, high-throughput real-time architectures, and open-source contributions.
           </motion.p>
 
           {/* Core Tech Stack Badges Strip */}

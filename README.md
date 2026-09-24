@@ -1,6 +1,6 @@
 # Lakshya Mudgal — Engineering Portfolio
 
-A high-performance, dark-first software engineering portfolio for **Lakshya Mudgal**, final-year B.Tech Information Technology student at IIIT Una and full-stack software engineer.
+A high-performance, dark-first software engineering portfolio for **Lakshya Mudgal**, B.Tech Information Technology student at IIIT Una (Class of 2027) and full-stack software engineer.
 
 Built with Next.js (App Router), TypeScript, React, Tailwind CSS, Framer Motion, and Three.js.
 
@@ -56,7 +56,7 @@ Built with Next.js (App Router), TypeScript, React, Tailwind CSS, Framer Motion,
     - Team Lead at EIC (10+ events) and Executive at EPMOC (100+ attendees)
 11. **Contact & Footer**:
     - Interactive contact form with input validation and Resend integration
-    - One-click email copy (`lakshyamudgal04@gmail.com`)
+    - One-click email copy (`lakshyawork14@gmail.com`)
     - Dynamic year and social links
 
 ---

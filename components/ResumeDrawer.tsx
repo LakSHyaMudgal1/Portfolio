@@ -36,7 +36,7 @@ export function ResumeDrawer() {
 
   const copySummary = () => {
     const summary = `${PERSONAL_INFO.name} — ${PERSONAL_INFO.title}
-Education: Final-Year B.Tech IT, IIIT Una ('26)
+Education: B.Tech IT, IIIT Una ('27)
 LeetCode Knight (1910 rating, 1058+ problems solved)
 Projects: CargoXpress (+40% freight capacity), TabTrack (Collaborative Workspace), OS Scheduler, TLB Simulator
 Experience: Full Stack Intern at Infinito Comics (Node.js, Express, AWS EC2, S3)
@@ -219,7 +219,7 @@ Contact: ${PERSONAL_INFO.socials.email} | ${PERSONAL_INFO.socials.github}`;
                   </div>
                 </div>
                 <div className="text-xs font-mono text-emerald-400">
-                  Status: {PERSONAL_INFO.education.status} (Graduation: 2026)
+                  Status: {PERSONAL_INFO.education.status} (Graduation: 2027)
                 </div>
                 <p className="text-xs text-slate-300 font-light leading-relaxed">
                   Focusing on data structures, algorithms, operating systems, database management systems, computer networks, and full-stack software development.

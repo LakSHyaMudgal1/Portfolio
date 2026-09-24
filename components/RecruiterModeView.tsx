@@ -80,7 +80,7 @@ export function RecruiterModeView() {
                 {PERSONAL_INFO.status}
               </span>
               <span className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/[0.06] text-slate-400">
-                Graduating 2026
+                Graduating 2027
               </span>
             </div>
 

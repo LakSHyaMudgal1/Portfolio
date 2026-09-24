@@ -24,7 +24,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Lakshya Mudgal — Full-Stack Software Engineer",
   description:
-    "Portfolio of Lakshya Mudgal, a final-year B.Tech IT student at IIIT Una and full-stack software engineer specializing in React, Node.js, TypeScript, and high-throughput real-time systems.",
+    "Portfolio of Lakshya Mudgal, a B.Tech IT student at IIIT Una (Class of '27) and full-stack software engineer specializing in React, Node.js, TypeScript, and high-throughput real-time systems.",
   keywords: [
     "Lakshya Mudgal",
     "Software Engineer",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     "Distributed Systems",
     "Real-time Systems",
   ],
-  authors: [{ name: "Lakshya Mudgal", url: "https://github.com/lakshyamudgal" }],
+  authors: [{ name: "Lakshya Mudgal", url: "https://github.com/LakSHyaMudgal1" }],
   creator: "Lakshya Mudgal",
   metadataBase: new URL("https://lakshyamudgal.dev"),
   icons: {
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Lakshya Mudgal — Full-Stack Software Engineer",
     description:
-      "Final-year B.Tech IT at IIIT Una. Full-stack software developer building resilient web & mobile products, distributed systems, and real-time architectures.",
+      "B.Tech IT at IIIT Una (Class of '27). Full-stack software developer building resilient web & mobile products, distributed systems, and real-time architectures.",
     url: "https://lakshyamudgal.dev",
     siteName: "Lakshya Mudgal Portfolio",
     locale: "en_US",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Lakshya Mudgal — Full-Stack Software Engineer",
     description:
-      "Final-year B.Tech IT at IIIT Una. Full-stack software developer building resilient web & mobile products, distributed systems, and real-time architectures.",
+      "B.Tech IT at IIIT Una (Class of '27). Full-stack software developer building resilient web & mobile products, distributed systems, and real-time architectures.",
   },
   robots: {
     index: true,
