@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { SectionHeading } from "./SectionHeading";
-import { OPEN_SOURCE_CONTRIBUTIONS } from "@/lib/data";
+import { OPEN_SOURCE_CONTRIBUTIONS, PERSONAL_INFO } from "@/lib/data";
 import { ArrowUpRight, CheckCircle2, GitCommit, GitMerge } from "lucide-react";
 import { GithubIcon } from "@/components/Icons";
 
@@ -71,9 +71,9 @@ export function OpenSource() {
                 </div>
 
                 <a
-                  href="https://github.com/lakshyamudgal"
+                  href={PERSONAL_INFO.socials.github}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors"
                 >
                   <GithubIcon className="w-3.5 h-3.5" />
@@ -88,7 +88,7 @@ export function OpenSource() {
         {/* Banner quote */}
         <div className="p-4 rounded-xl bg-[#090b10] border border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono text-slate-400">
           <span>Active participant in collaborative code reviews, issue triage, and upstream pull requests.</span>
-          <span className="text-sky-400">github.com/lakshyamudgal</span>
+          <span className="text-sky-400">github.com/LakSHyaMudgal1</span>
         </div>
 
       </div>

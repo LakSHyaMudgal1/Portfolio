@@ -25,7 +25,7 @@ export interface SkillCategory {
 export const PERSONAL_INFO = {
   name: "Lakshya Mudgal",
   shortName: "Lakshya",
-  title: "Software Engineer • Full-Stack Developer",
+  title: "Final-Year B.Tech IT Student • Full-Stack Developer",
   tagline: "Building products, solving problems.",
   bio: "Final-year B.Tech IT student at IIIT Una focused on full-stack development, real-time systems and scalable software.",
   aboutExtended:
@@ -37,11 +37,11 @@ export const PERSONAL_INFO = {
     status: "Final Year Student",
   },
   socials: {
-    github: "https://github.com/lakshyamudgal",
-    linkedin: "https://linkedin.com/in/lakshyamudgal",
-    leetcode: "https://leetcode.com/u/lakshyamudgal",
+    github: "https://github.com/LakSHyaMudgal1",
+    linkedin: "https://www.linkedin.com/in/lakshya-mudgal-ba149728a/",
+    leetcode: "https://leetcode.com/u/luxmdgl1403/",
     codolio: "https://codolio.com/profile/lakshyamudgal",
-    email: "lakshyamudgal04@gmail.com",
+    email: "lakshyawork14@gmail.com",
   },
   stats: [
     { label: "Problems Solved", value: 1058, suffix: "+" },
@@ -353,9 +353,9 @@ export const PROBLEM_SOLVING_DATA = {
     { difficulty: "Hard", count: 133, color: "#ef4444", percent: 13 },
   ],
   links: [
-    { name: "LeetCode", url: "https://leetcode.com/u/lakshyamudgal", note: "Knight • 1910 Peak" },
+    { name: "LeetCode", url: "https://leetcode.com/u/luxmdgl1403/", note: "Knight • 1910 Peak" },
     { name: "Codolio", url: "https://codolio.com/profile/lakshyamudgal", note: "Global Stats" },
-    { name: "GitHub", url: "https://github.com/lakshyamudgal", note: "Repositories & Code" },
+    { name: "GitHub", url: "https://github.com/LakSHyaMudgal1", note: "Repositories & Code" },
   ],
 };
 

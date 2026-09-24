@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, type Variants, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/Icons";
+import { GithubIcon, LinkedinIcon, LeetcodeIcon } from "@/components/Icons";
 import { PERSONAL_INFO } from "@/lib/data";
 import { SystemPipelineHero } from "./SystemPipelineHero";
 import { Magnetic } from "./MagneticButton";
@@ -227,7 +227,7 @@ export function Hero() {
                 href="#projects"
                 className="btn-primary-tactile px-6 py-3 rounded-xl text-sm font-medium flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto group shadow-xl"
               >
-                <span>View Projects</span>
+                <span>View Selected Work</span>
                 <ArrowDown className="w-4 h-4 text-slate-700 group-hover:translate-y-0.5 transition-transform duration-200" />
               </a>
             </Magnetic>
@@ -239,7 +239,7 @@ export function Hero() {
                 className="btn-secondary-tactile px-5 py-3 rounded-xl text-sm font-medium flex items-center justify-center gap-2 cursor-pointer w-full sm:w-auto"
               >
                 <Mail className="w-4 h-4 text-slate-400" />
-                <span>Get in Touch</span>
+                <span>Get In Touch</span>
               </a>
             </Magnetic>
 
@@ -248,8 +248,9 @@ export function Hero() {
               <a
                 href={PERSONAL_INFO.socials.github}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="btn-secondary-tactile px-4 py-3 rounded-xl text-xs font-mono flex items-center justify-center gap-2 cursor-pointer text-slate-300"
+                data-cursor="OPEN"
                 title="GitHub Profile"
               >
                 <GithubIcon className="w-4 h-4 text-slate-400" />
@@ -263,12 +264,29 @@ export function Hero() {
               <a
                 href={PERSONAL_INFO.socials.linkedin}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="btn-secondary-tactile px-4 py-3 rounded-xl text-xs font-mono flex items-center justify-center gap-2 cursor-pointer text-slate-300"
+                data-cursor="OPEN"
                 title="LinkedIn Profile"
               >
                 <LinkedinIcon className="w-4 h-4 text-indigo-400" />
                 <span>LinkedIn</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-slate-500" />
+              </a>
+            </Magnetic>
+
+            {/* LeetCode Social Link (Magnetic) */}
+            <Magnetic strength={8}>
+              <a
+                href={PERSONAL_INFO.socials.leetcode}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary-tactile px-4 py-3 rounded-xl text-xs font-mono flex items-center justify-center gap-2 cursor-pointer text-slate-300"
+                data-cursor="OPEN"
+                title="LeetCode Profile"
+              >
+                <LeetcodeIcon className="w-4 h-4 text-amber-400" />
+                <span>LeetCode</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-slate-500" />
               </a>
             </Magnetic>

@@ -76,8 +76,10 @@ export function TerminalModal() {
             <div><span className="text-sky-300 w-28 inline-block font-mono">achievements</span> - Hackathon podiums &amp; LeetCode rating</div>
             <div><span className="text-sky-300 w-28 inline-block font-mono">resume</span> - Open interactive resume drawer</div>
             <div><span className="text-sky-300 w-28 inline-block font-mono">recruiter</span> - Switch portfolio to Recruiter Mode</div>
-            <div><span className="text-sky-300 w-28 inline-block font-mono">github</span> - Open Lakshya&apos;s GitHub profile</div>
-            <div><span className="text-sky-300 w-28 inline-block font-mono">contact</span> - Display email and social links</div>
+            <div><span className="text-sky-300 w-28 inline-block font-mono">github</span> - Open GitHub profile</div>
+            <div><span className="text-sky-300 w-28 inline-block font-mono">linkedin</span> - Open LinkedIn profile</div>
+            <div><span className="text-sky-300 w-28 inline-block font-mono">leetcode</span> - Open LeetCode profile</div>
+            <div><span className="text-sky-300 w-28 inline-block font-mono">contact</span> - Display email address</div>
             <div><span className="text-sky-300 w-28 inline-block font-mono">clear</span> - Clear terminal session history</div>
             <div><span className="text-sky-300 w-28 inline-block font-mono">exit</span> - Close terminal console</div>
           </div>
@@ -162,15 +164,35 @@ export function TerminalModal() {
 
       case "github":
         window.open(PERSONAL_INFO.socials.github, "_blank");
-        outputNode = <div className="text-sky-300 text-xs">Opening {PERSONAL_INFO.socials.github}...</div>;
+        outputNode = (
+          <div className="text-sky-300 text-xs">
+            Opening <a href={PERSONAL_INFO.socials.github} target="_blank" rel="noopener noreferrer" className="underline">{PERSONAL_INFO.socials.github}</a>
+          </div>
+        );
+        break;
+
+      case "linkedin":
+        window.open(PERSONAL_INFO.socials.linkedin, "_blank");
+        outputNode = (
+          <div className="text-sky-300 text-xs">
+            Opening <a href={PERSONAL_INFO.socials.linkedin} target="_blank" rel="noopener noreferrer" className="underline">{PERSONAL_INFO.socials.linkedin}</a>
+          </div>
+        );
+        break;
+
+      case "leetcode":
+        window.open(PERSONAL_INFO.socials.leetcode, "_blank");
+        outputNode = (
+          <div className="text-sky-300 text-xs">
+            Opening <a href={PERSONAL_INFO.socials.leetcode} target="_blank" rel="noopener noreferrer" className="underline">{PERSONAL_INFO.socials.leetcode}</a>
+          </div>
+        );
         break;
 
       case "contact":
         outputNode = (
           <div className="space-y-1 text-xs text-slate-300">
             <div>Email: <a href={`mailto:${PERSONAL_INFO.socials.email}`} className="text-sky-400 underline">{PERSONAL_INFO.socials.email}</a></div>
-            <div>LinkedIn: <a href={PERSONAL_INFO.socials.linkedin} target="_blank" rel="noreferrer" className="text-sky-400 underline">{PERSONAL_INFO.socials.linkedin}</a></div>
-            <div>GitHub: <a href={PERSONAL_INFO.socials.github} target="_blank" rel="noreferrer" className="text-sky-400 underline">{PERSONAL_INFO.socials.github}</a></div>
           </div>
         );
         break;

@@ -30,7 +30,7 @@ export function Footer() {
               LAKSHYA MUDGAL
             </div>
             <p className="text-xs font-mono text-slate-500">
-              Information Technology • IIIT Una &apos;26 • Full-Stack Engineer
+              Final-Year B.Tech IT • IIIT Una &apos;26 • Full-Stack Developer
             </p>
           </div>
 
@@ -39,7 +39,7 @@ export function Footer() {
             <a
               href={PERSONAL_INFO.socials.github}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="hover:text-white transition-colors flex items-center gap-1.5 p-2 rounded-lg hover:bg-white/[0.04]"
             >
               <GithubIcon className="w-3.5 h-3.5" />
@@ -50,7 +50,7 @@ export function Footer() {
             <a
               href={PERSONAL_INFO.socials.linkedin}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="hover:text-white transition-colors flex items-center gap-1.5 p-2 rounded-lg hover:bg-white/[0.04]"
             >
               <LinkedinIcon className="w-3.5 h-3.5" />
@@ -61,7 +61,7 @@ export function Footer() {
             <a
               href={PERSONAL_INFO.socials.leetcode}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="hover:text-white transition-colors flex items-center gap-1.5 p-2 rounded-lg hover:bg-white/[0.04]"
             >
               <LeetcodeIcon className="w-3.5 h-3.5" />
@@ -72,11 +72,19 @@ export function Footer() {
             <a
               href={PERSONAL_INFO.socials.codolio}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="hover:text-white transition-colors flex items-center gap-1.5 p-2 rounded-lg hover:bg-white/[0.04]"
             >
               <span>Codolio</span>
               <ArrowUpRight className="w-3 h-3 text-slate-500" />
+            </a>
+
+            {/* Email */}
+            <a
+              href={`mailto:${PERSONAL_INFO.socials.email}`}
+              className="hover:text-white transition-colors flex items-center gap-1.5 p-2 rounded-lg hover:bg-white/[0.04]"
+            >
+              <span>{PERSONAL_INFO.socials.email}</span>
             </a>
 
             {/* Back to top button */}

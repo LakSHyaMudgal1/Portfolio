@@ -240,7 +240,7 @@ Contact: ${PERSONAL_INFO.socials.email} | ${PERSONAL_INFO.socials.github}`;
         </div>
 
         {/* Drawer Bottom Actions */}
-        <div className="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between gap-3 text-xs font-mono">
+        <div className="pt-6 mt-6 border-t border-white/[0.08] flex flex-wrap items-center gap-3 text-xs font-mono">
           <button
             type="button"
             onClick={copySummary}
@@ -251,9 +251,16 @@ Contact: ${PERSONAL_INFO.socials.email} | ${PERSONAL_INFO.socials.github}`;
           </button>
 
           <a
+            href={`mailto:${PERSONAL_INFO.socials.email}`}
+            className="px-3.5 py-2 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-300 hover:text-sky-200 hover:bg-sky-500/20 flex items-center gap-1.5 transition-colors cursor-pointer"
+          >
+            <span>Contact</span>
+          </a>
+
+          <a
             href="/resume.pdf"
             download="Lakshya_Mudgal_Resume.pdf"
-            className="btn-primary-tactile px-4 py-2 rounded-xl flex items-center gap-2 cursor-pointer"
+            className="ml-auto btn-primary-tactile px-4 py-2 rounded-xl flex items-center gap-2 cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Download PDF</span>

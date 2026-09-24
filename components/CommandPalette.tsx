@@ -47,7 +47,6 @@ function CommandPaletteModal({ onClose }: { onClose: () => void }) {
 
   const {
     mode,
-    setMode,
     changeModeWithTransition,
     setIsTerminalOpen,
     setIsResumeDrawerOpen,
@@ -263,7 +262,7 @@ function CommandPaletteModal({ onClose }: { onClose: () => void }) {
     },
     {
       id: "soc-github",
-      title: "Open GitHub Profile (@lakshyamudgal)",
+      title: "Open GitHub (@LakSHyaMudgal1)",
       category: "Social",
       icon: GithubIcon,
       action: () => openUrl(PERSONAL_INFO.socials.github),
@@ -272,7 +271,7 @@ function CommandPaletteModal({ onClose }: { onClose: () => void }) {
     },
     {
       id: "soc-linkedin",
-      title: "Open LinkedIn Profile",
+      title: "Open LinkedIn (@lakshya-mudgal-ba149728a)",
       category: "Social",
       icon: LinkedinIcon,
       action: () => openUrl(PERSONAL_INFO.socials.linkedin),
@@ -281,12 +280,24 @@ function CommandPaletteModal({ onClose }: { onClose: () => void }) {
     },
     {
       id: "soc-leetcode",
-      title: "Open LeetCode Profile (@lakshyamudgal)",
+      title: "Open LeetCode (@luxmdgl1403)",
       category: "Social",
       icon: LeetcodeIcon,
       action: () => openUrl(PERSONAL_INFO.socials.leetcode),
-      shortcut: "C",
-      keywords: ["leetcode", "competitive", "dsa"],
+      shortcut: "LC",
+      keywords: ["leetcode", "competitive", "dsa", "luxmdgl1403"],
+    },
+    {
+      id: "soc-email",
+      title: "Email Lakshya (lakshyawork14@gmail.com)",
+      category: "Social",
+      icon: Mail,
+      action: () => {
+        onClose();
+        window.open(`mailto:${PERSONAL_INFO.socials.email}`, "_self");
+      },
+      shortcut: "E",
+      keywords: ["email", "mail", "contact", "lakshyawork14"],
     },
   ];
 

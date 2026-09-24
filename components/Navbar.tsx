@@ -2,7 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Command, ArrowUpRight, Sparkles, Cpu, Terminal as TerminalIcon, RotateCcw, Briefcase } from "lucide-react";
+import { Menu, X, Command, ArrowUpRight, Sparkles, Cpu, Terminal as TerminalIcon, RotateCcw, Briefcase, Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon, LeetcodeIcon } from "@/components/Icons";
+import { PERSONAL_INFO } from "@/lib/data";
 import { usePortfolio } from "@/context/PortfolioContext";
 import { ExperienceSwitcher } from "./ExperienceSwitcher";
 
@@ -353,28 +355,77 @@ export function Navbar({ onOpenCommandPalette }: { onOpenCommandPalette?: () => 
                 ))}
               </nav>
 
-              <div className="mt-5 pt-3 flex items-center justify-between text-xs font-mono text-slate-400 border-t border-white/5">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    setIsTerminalOpen(true);
-                  }}
-                  className="text-emerald-400 hover:underline flex items-center gap-1 cursor-pointer"
-                >
-                  <TerminalIcon className="w-3.5 h-3.5" />
-                  <span>Terminal Console</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    setIsResumeDrawerOpen(true);
-                  }}
-                  className="text-sky-400 hover:underline cursor-pointer"
-                >
-                  Resume Drawer
-                </button>
+              <div className="mt-5 pt-4 border-t border-white/[0.08] space-y-3">
+                {/* Social links row */}
+                <div className="text-[10px] font-mono uppercase tracking-widest text-slate-500 mb-2">Follow</div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <a
+                    href={PERSONAL_INFO.socials.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-xs font-mono text-slate-300 hover:text-white hover:border-white/25 transition-all cursor-pointer"
+                  >
+                    <GithubIcon className="w-3.5 h-3.5" />
+                    <span>GitHub</span>
+                    <ArrowUpRight className="w-3 h-3 text-slate-500" />
+                  </a>
+                  <a
+                    href={PERSONAL_INFO.socials.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-xs font-mono text-slate-300 hover:text-white hover:border-white/25 transition-all cursor-pointer"
+                  >
+                    <LinkedinIcon className="w-3.5 h-3.5 text-indigo-400" />
+                    <span>LinkedIn</span>
+                    <ArrowUpRight className="w-3 h-3 text-slate-500" />
+                  </a>
+                  <a
+                    href={PERSONAL_INFO.socials.leetcode}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 text-xs font-mono text-slate-300 hover:text-white hover:border-white/25 transition-all cursor-pointer"
+                  >
+                    <LeetcodeIcon className="w-3.5 h-3.5 text-amber-400" />
+                    <span>LeetCode</span>
+                    <ArrowUpRight className="w-3 h-3 text-slate-500" />
+                  </a>
+                </div>
+
+                {/* Bottom actions row */}
+                <div className="flex items-center justify-between pt-1 text-xs font-mono text-slate-400">
+                  <a
+                    href={`mailto:${PERSONAL_INFO.socials.email}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-sky-400 hover:text-sky-300 flex items-center gap-1 cursor-pointer"
+                  >
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>Email Me</span>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setIsTerminalOpen(true);
+                    }}
+                    className="text-emerald-400 hover:underline flex items-center gap-1 cursor-pointer"
+                  >
+                    <TerminalIcon className="w-3.5 h-3.5" />
+                    <span>Terminal</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setIsResumeDrawerOpen(true);
+                    }}
+                    className="text-slate-400 hover:text-white cursor-pointer"
+                  >
+                    Resume
+                  </button>
+                </div>
               </div>
             </motion.div>
           </>
