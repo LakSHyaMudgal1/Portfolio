@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { X, CornerDownLeft } from "lucide-react";
 import { PERSONAL_INFO, PROJECTS, EXPERIENCES, SKILL_CATEGORIES } from "@/lib/data";
 import { usePortfolio } from "@/context/PortfolioContext";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 interface TerminalHistoryItem {
   id: string;
@@ -14,6 +15,8 @@ interface TerminalHistoryItem {
 
 export function TerminalModal() {
   const { isTerminalOpen, setIsTerminalOpen, setMode, setIsResumeDrawerOpen } = usePortfolio();
+  useScrollLock(isTerminalOpen);
+
   const [inputVal, setInputVal] = useState("");
   const [history, setHistory] = useState<TerminalHistoryItem[]>([
     {
@@ -247,7 +250,8 @@ export function TerminalModal() {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 16 }}
         transition={{ duration: 0.2 }}
-        className="relative w-full max-w-2xl h-[480px] rounded-3xl bg-[#07090e] border border-white/15 shadow-2xl z-10 flex flex-col overflow-hidden font-mono"
+        data-lenis-prevent="true"
+        className="relative w-full max-w-2xl h-[480px] max-h-[85dvh] rounded-3xl bg-[#07090e] border border-white/15 shadow-2xl z-10 flex flex-col overflow-hidden font-mono overscroll-contain"
       >
         {/* Window Chrome Titlebar */}
         <div className="px-5 py-3.5 bg-[#0b0e16] border-b border-white/[0.08] flex items-center justify-between select-none">
@@ -271,7 +275,8 @@ export function TerminalModal() {
         {/* Terminal Screen Output Area */}
         <div
           ref={scrollRef}
-          className="flex-1 p-5 overflow-y-auto space-y-4 text-xs text-slate-200 no-scrollbar"
+          data-lenis-prevent="true"
+          className="flex-1 p-5 overflow-y-auto overscroll-contain space-y-4 text-xs text-slate-200"
         >
           {history.map((item) => (
             <div key={item.id} className="space-y-1.5">

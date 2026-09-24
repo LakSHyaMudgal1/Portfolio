@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionHeading } from "./SectionHeading";
 import { PROJECTS, Project } from "@/lib/data";
+import { useScrollLock } from "@/hooks/useScrollLock";
 import { 
   AlertCircle,
   ArrowDown,
@@ -318,7 +319,6 @@ function CargoxpressCaseStudy({
                   <div
                     key={node.id}
                     data-arch-node="true"
-                    data-cursor="EXPLORE"
                     onMouseEnter={() => setHoveredArchNode(node.id)}
                     onMouseLeave={() => setHoveredArchNode(null)}
                     className={`p-2.5 rounded-xl border transition-all text-center cursor-pointer ${
@@ -449,7 +449,6 @@ function CargoxpressCaseStudy({
                 href={project.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                data-cursor="OPEN"
                 className="btn-primary-tactile px-5 py-2.5 rounded-xl text-xs font-mono flex items-center gap-2 cursor-pointer justify-center group/btn"
               >
                 <GithubIcon className="w-3.5 h-3.5" />
@@ -462,7 +461,6 @@ function CargoxpressCaseStudy({
             <button
               type="button"
               onClick={onOpenStory}
-              data-cursor="EXPLORE"
               className="px-4 py-2.5 rounded-xl text-xs font-mono bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 flex items-center gap-2 transition-all cursor-pointer shadow-sm"
               title="Launch 6-Step Scroll Case Study"
             >
@@ -474,7 +472,6 @@ function CargoxpressCaseStudy({
             <button
               type="button"
               onClick={onOpenReplay}
-              data-cursor="EXPLORE"
               className="px-4 py-2.5 rounded-xl text-xs font-mono bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 text-sky-300 flex items-center gap-2 transition-all cursor-pointer shadow-sm"
               title="Replay Request Flow Animation"
             >
@@ -721,7 +718,6 @@ function TabtrackPresentation({
                   <div
                     key={n.id}
                     data-arch-node="true"
-                    data-cursor="EXPLORE"
                     onMouseEnter={() => setHoveredArchNode(n.id)}
                     onMouseLeave={() => setHoveredArchNode(null)}
                     className={`p-2 rounded-lg border text-left transition-all cursor-pointer ${
@@ -788,7 +784,6 @@ function TabtrackPresentation({
               href={project.githubUrl}
               target="_blank"
               rel="noreferrer"
-              data-cursor="OPEN"
               className="btn-primary-tactile px-4 py-2 rounded-xl text-xs font-mono flex items-center gap-1.5 cursor-pointer group/btn"
             >
               <GithubIcon className="w-3.5 h-3.5" />
@@ -800,7 +795,6 @@ function TabtrackPresentation({
             <button
               type="button"
               onClick={onOpenStory}
-              data-cursor="EXPLORE"
               className="px-3.5 py-2 rounded-xl text-xs font-mono bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 flex items-center gap-1.5 transition-all cursor-pointer"
               title="Launch 6-Step Scroll Case Study"
             >
@@ -812,7 +806,6 @@ function TabtrackPresentation({
             <button
               type="button"
               onClick={onOpenReplay}
-              data-cursor="EXPLORE"
               className="px-3.5 py-2 rounded-xl text-xs font-mono bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 text-sky-300 flex items-center gap-1.5 transition-all cursor-pointer"
               title="Replay WebSocket & WebRTC Event Flow"
             >
@@ -1265,7 +1258,6 @@ function OsSchedulerCard({
           href={project.githubUrl}
           target="_blank"
           rel="noreferrer"
-          data-cursor="OPEN"
           className="btn-primary-tactile px-3.5 py-2 rounded-xl text-xs font-mono flex items-center gap-1.5 cursor-pointer group/btn"
         >
           <GithubIcon className="w-3.5 h-3.5" />
@@ -1277,7 +1269,6 @@ function OsSchedulerCard({
         <button
           type="button"
           onClick={onOpenReplay}
-          data-cursor="EXPLORE"
           className="px-3 py-2 rounded-xl text-xs font-mono bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 text-sky-300 flex items-center gap-1.5 transition-all cursor-pointer"
           title="Replay CPU Dispatch Loop"
         >
@@ -1463,7 +1454,6 @@ function TlbSimulatorCard({
           href={project.githubUrl}
           target="_blank"
           rel="noreferrer"
-          data-cursor="OPEN"
           className="btn-primary-tactile px-3.5 py-2 rounded-xl text-xs font-mono flex items-center gap-1.5 cursor-pointer group/btn"
         >
           <GithubIcon className="w-3.5 h-3.5" />
@@ -1475,7 +1465,6 @@ function TlbSimulatorCard({
         <button
           type="button"
           onClick={onOpenReplay}
-          data-cursor="EXPLORE"
           className="px-3 py-2 rounded-xl text-xs font-mono bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 flex items-center gap-1.5 transition-all cursor-pointer"
           title="Replay Virtual-to-Physical Address Translation"
         >
@@ -1594,7 +1583,6 @@ function ChatmateCard({
               href={project.githubUrl}
               target="_blank"
               rel="noreferrer"
-              data-cursor="OPEN"
               className="btn-primary-tactile px-4 py-2 rounded-xl text-xs font-mono flex items-center gap-1.5 cursor-pointer group/btn"
             >
               <GithubIcon className="w-3.5 h-3.5" />
@@ -1605,7 +1593,6 @@ function ChatmateCard({
             <button
               type="button"
               onClick={onOpenReplay}
-              data-cursor="EXPLORE"
               className="px-3.5 py-2 rounded-xl text-xs font-mono bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 text-sky-300 flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
               title="Replay Real-Time Mobile Messaging & Presence Flow"
             >
@@ -1743,6 +1730,7 @@ function ProjectDetailsModal({
   onOpenReplay?: (id: string) => void;
   onOpenTech?: (t: string) => void;
 }) {
+  useScrollLock(true);
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -1755,7 +1743,7 @@ function ProjectDetailsModal({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6"
+      className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6 overscroll-contain"
     >
       {/* Backdrop */}
       <motion.div
@@ -1773,7 +1761,8 @@ function ProjectDetailsModal({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 16 }}
         transition={{ duration: 0.2 }}
-        className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl bg-[#0c0e15] border border-white/15 p-6 sm:p-8 shadow-2xl z-10 no-scrollbar"
+        data-lenis-prevent="true"
+        className="relative w-full max-w-2xl max-h-[85dvh] overflow-y-auto overscroll-contain rounded-3xl bg-[#0c0e15] border border-white/15 p-6 sm:p-8 shadow-2xl z-10"
       >
         {/* Top hairline */}
         <div className="absolute top-0 left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent pointer-events-none" />
@@ -2059,7 +2048,6 @@ function ProjectDetailsModal({
               href={project.githubUrl}
               target="_blank"
               rel="noreferrer"
-              data-cursor="OPEN"
               className="btn-primary-tactile px-6 py-2.5 rounded-xl text-xs font-mono flex items-center gap-2 cursor-pointer"
             >
               <GithubIcon className="w-4 h-4" />

@@ -7,6 +7,7 @@ import { GithubIcon, LinkedinIcon, LeetcodeIcon } from "@/components/Icons";
 import { PERSONAL_INFO } from "@/lib/data";
 import { usePortfolio } from "@/context/PortfolioContext";
 import { ExperienceSwitcher } from "./ExperienceSwitcher";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 const NAV_ITEMS = [
   { label: "Projects", href: "#projects" },
@@ -67,21 +68,16 @@ export function Navbar({ onOpenCommandPalette }: { onOpenCommandPalette?: () => 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll and listen for Escape key when mobile menu is open
+  // Use centralized scroll locking and Escape key handling for mobile menu
+  useScrollLock(isMobileMenuOpen);
+
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-      const handleEscape = (e: KeyboardEvent) => {
-        if (e.key === "Escape") setIsMobileMenuOpen(false);
-      };
-      window.addEventListener("keydown", handleEscape);
-      return () => {
-        document.body.style.overflow = "";
-        window.removeEventListener("keydown", handleEscape);
-      };
-    } else {
-      document.body.style.overflow = "";
-    }
+    if (!isMobileMenuOpen) return;
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
   }, [isMobileMenuOpen]);
 
   const handleOpenPalette = () => {
@@ -284,7 +280,7 @@ export function Navbar({ onOpenCommandPalette }: { onOpenCommandPalette?: () => 
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-x-0 top-[60px] z-50 bg-[#050608]/98 backdrop-blur-2xl border-b border-white/10 p-6 md:hidden shadow-2xl"
+              className="fixed inset-x-0 top-[60px] max-h-[calc(100dvh-60px)] overflow-y-auto overscroll-contain z-50 bg-[#050608]/98 backdrop-blur-2xl border-b border-white/10 p-6 md:hidden shadow-2xl touch-auto"
             >
               {/* Experience Switcher on Mobile */}
               <div className="mb-5 p-3 rounded-2xl bg-white/[0.03] border border-white/[0.08]">

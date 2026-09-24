@@ -23,6 +23,7 @@ import {
 import { GithubIcon, LinkedinIcon, LeetcodeIcon } from "@/components/Icons";
 import { PERSONAL_INFO } from "@/lib/data";
 import { usePortfolio } from "@/context/PortfolioContext";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 interface CommandItem {
   id: string;
@@ -40,10 +41,13 @@ export function CommandPalette({ isOpen, onClose }: { isOpen: boolean; onClose: 
 }
 
 function CommandPaletteModal({ onClose }: { onClose: () => void }) {
+  useScrollLock(true);
+
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [copied, setCopied] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const {
     mode,
@@ -317,6 +321,13 @@ function CommandPaletteModal({ onClose }: { onClose: () => void }) {
     inputRef.current?.focus();
   }, []);
 
+  // Automatically scroll selected item into view when navigating via keyboard
+  useEffect(() => {
+    if (itemRefs.current[selectedIndex]) {
+      itemRefs.current[selectedIndex]?.scrollIntoView({ block: "nearest" });
+    }
+  }, [selectedIndex]);
+
   // Keyboard navigation inside list
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowDown") {
@@ -339,7 +350,7 @@ function CommandPaletteModal({ onClose }: { onClose: () => void }) {
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-[120] flex items-start justify-center pt-20 sm:pt-28 px-4"
+      className="fixed inset-0 z-[120] flex items-start justify-center pt-12 sm:pt-20 px-4 overscroll-contain"
     >
       {/* Backdrop */}
       <motion.div
@@ -357,6 +368,7 @@ function CommandPaletteModal({ onClose }: { onClose: () => void }) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.96, y: -10 }}
         transition={{ duration: 0.15 }}
+        data-lenis-prevent="true"
         className="relative w-full max-w-2xl bg-[#090b11] border border-white/15 rounded-3xl shadow-2xl overflow-hidden z-10 font-sans"
         onKeyDown={handleKeyDown}
       >
@@ -383,7 +395,7 @@ function CommandPaletteModal({ onClose }: { onClose: () => void }) {
         </div>
 
         {/* Results List */}
-        <div className="max-h-[380px] overflow-y-auto p-2 no-scrollbar">
+        <div data-lenis-prevent="true" className="max-h-[min(55vh,380px)] overflow-y-auto overscroll-contain p-2 font-sans">
           {filteredCommands.length === 0 ? (
             <div className="py-12 text-center text-sm font-mono text-slate-500">
               No matching commands found.
@@ -395,6 +407,7 @@ function CommandPaletteModal({ onClose }: { onClose: () => void }) {
               return (
                 <button
                   key={cmd.id}
+                  ref={(el) => { itemRefs.current[index] = el; }}
                   type="button"
                   onClick={cmd.action}
                   onMouseEnter={() => setSelectedIndex(index)}

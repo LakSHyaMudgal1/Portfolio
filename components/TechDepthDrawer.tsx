@@ -5,18 +5,21 @@ import { motion } from "framer-motion";
 import { X, Check, ArrowUpRight } from "lucide-react";
 import { TECH_DETAILS } from "@/lib/data";
 import { usePortfolio } from "@/context/PortfolioContext";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 export function TechDepthDrawer() {
   const { selectedTechDrawer, setSelectedTechDrawer } = usePortfolio();
+  useScrollLock(!!selectedTechDrawer);
 
   // Handle ESC
   useEffect(() => {
+    if (!selectedTechDrawer) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setSelectedTechDrawer(null);
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [setSelectedTechDrawer]);
+  }, [selectedTechDrawer, setSelectedTechDrawer]);
 
   if (!selectedTechDrawer) return null;
 
@@ -58,11 +61,12 @@ export function TechDepthDrawer() {
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
         transition={{ type: "spring", damping: 30, stiffness: 300 }}
-        className="relative w-full max-w-md h-full bg-[#0a0d14] border-l border-white/10 p-6 sm:p-8 shadow-2xl z-10 flex flex-col justify-between overflow-y-auto no-scrollbar"
+        data-lenis-prevent="true"
+        className="relative w-full max-w-md h-[100dvh] bg-[#0a0d14] border-l border-white/10 shadow-2xl z-10 flex flex-col justify-between overflow-hidden"
       >
-        <div>
-          {/* Header */}
-          <div className="flex items-start justify-between gap-4 pb-4 mb-6 border-b border-white/[0.08]">
+        {/* Header (Sticky Top) */}
+        <div className="p-6 sm:p-8 pb-4 border-b border-white/[0.08] shrink-0 bg-[#0a0d14]">
+          <div className="flex items-start justify-between gap-4">
             <div>
               <span className="text-[10px] font-mono text-sky-400 bg-sky-500/10 px-2.5 py-0.5 rounded border border-sky-500/20 font-semibold uppercase tracking-widest">
                 {tech.category}
@@ -81,72 +85,73 @@ export function TechDepthDrawer() {
               <X className="w-5 h-5" />
             </button>
           </div>
+        </div>
 
-          <div className="space-y-6">
-            {/* Role & Purpose */}
-            <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 block mb-2 font-semibold">
-                ROLE IN LAKSHYA&apos;S STACK
-              </span>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
-                {tech.role}
-              </p>
-            </div>
+        {/* Scrollable Content Body */}
+        <div data-lenis-prevent="true" className="flex-1 overflow-y-auto overscroll-contain p-6 sm:p-8 space-y-6">
+          {/* Role & Purpose */}
+          <div>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 block mb-2 font-semibold">
+              ROLE IN LAKSHYA&apos;S STACK
+            </span>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-light">
+              {tech.role}
+            </p>
+          </div>
 
-            {/* Where It&apos;s Used (Projects) */}
-            <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 block mb-3 font-semibold">
-                PORTFOLIO PROJECTS USING {tech.name.toUpperCase()}
-              </span>
-              <div className="space-y-2.5">
-                {tech.projects.map((p, idx) => (
-                  <div
-                    key={idx}
-                    className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/15 transition-all"
-                  >
-                    <div className="flex items-center justify-between text-xs font-mono mb-1">
-                      <span className="text-white font-semibold">{p.name}</span>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setSelectedTechDrawer(null);
-                          document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
-                        }}
-                        className="text-[10px] text-sky-400 hover:text-sky-300 flex items-center gap-1 cursor-pointer"
-                      >
-                        <span>View Project</span>
-                        <ArrowUpRight className="w-3 h-3" />
-                      </button>
-                    </div>
-                    <p className="text-[11px] text-slate-400 font-light">
-                      {p.context}
-                    </p>
+          {/* Where It&apos;s Used (Projects) */}
+          <div>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 block mb-3 font-semibold">
+              PORTFOLIO PROJECTS USING {tech.name.toUpperCase()}
+            </span>
+            <div className="space-y-2.5">
+              {tech.projects.map((p, idx) => (
+                <div
+                  key={idx}
+                  className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/15 transition-all"
+                >
+                  <div className="flex items-center justify-between text-xs font-mono mb-1">
+                    <span className="text-white font-semibold">{p.name}</span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedTechDrawer(null);
+                        document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
+                      }}
+                      className="text-[10px] text-sky-400 hover:text-sky-300 flex items-center gap-1 cursor-pointer"
+                    >
+                      <span>View Project</span>
+                      <ArrowUpRight className="w-3 h-3" />
+                    </button>
                   </div>
-                ))}
-              </div>
+                  <p className="text-[11px] text-slate-400 font-light">
+                    {p.context}
+                  </p>
+                </div>
+              ))}
             </div>
+          </div>
 
-            {/* Architectural Patterns */}
-            <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 block mb-3 font-semibold">
-                ARCHITECTURAL IMPLEMENTATION PATTERNS
-              </span>
-              <div className="space-y-2">
-                {tech.keyPatterns.map((pat, idx) => (
-                  <div key={idx} className="flex items-start gap-2 text-xs text-slate-300 font-light">
-                    <div className="w-4 h-4 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="w-2.5 h-2.5 text-emerald-400" />
-                    </div>
-                    <span>{pat}</span>
+          {/* Architectural Patterns */}
+          <div>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 block mb-3 font-semibold">
+              ARCHITECTURAL IMPLEMENTATION PATTERNS
+            </span>
+            <div className="space-y-2">
+              {tech.keyPatterns.map((pat, idx) => (
+                <div key={idx} className="flex items-start gap-2 text-xs text-slate-300 font-light">
+                  <div className="w-4 h-4 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                    <Check className="w-2.5 h-2.5 text-emerald-400" />
                   </div>
-                ))}
-              </div>
+                  <span>{pat}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Drawer Bottom CTA */}
-        <div className="pt-6 mt-6 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono">
+        {/* Sticky Footer */}
+        <div className="p-6 sm:p-8 pt-4 border-t border-white/[0.08] shrink-0 bg-[#0a0d14] flex items-center justify-between text-xs font-mono">
           <span className="text-slate-500">Knowledge Graph Node</span>
           <button
             type="button"

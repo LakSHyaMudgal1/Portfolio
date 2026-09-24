@@ -250,7 +250,6 @@ export function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary-tactile px-4 py-3 rounded-xl text-xs font-mono flex items-center justify-center gap-2 cursor-pointer text-slate-300"
-                data-cursor="OPEN"
                 title="GitHub Profile"
               >
                 <GithubIcon className="w-4 h-4 text-slate-400" />
@@ -266,7 +265,6 @@ export function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary-tactile px-4 py-3 rounded-xl text-xs font-mono flex items-center justify-center gap-2 cursor-pointer text-slate-300"
-                data-cursor="OPEN"
                 title="LinkedIn Profile"
               >
                 <LinkedinIcon className="w-4 h-4 text-indigo-400" />
@@ -282,7 +280,6 @@ export function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary-tactile px-4 py-3 rounded-xl text-xs font-mono flex items-center justify-center gap-2 cursor-pointer text-slate-300"
-                data-cursor="OPEN"
                 title="LeetCode Profile"
               >
                 <LeetcodeIcon className="w-4 h-4 text-amber-400" />

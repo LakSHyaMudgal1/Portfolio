@@ -5,9 +5,11 @@ import { motion } from "framer-motion";
 import { X, GitCompare } from "lucide-react";
 import { PROJECT_COMPARISONS, ProjectComparisonItem } from "@/lib/data";
 import { usePortfolio } from "@/context/PortfolioContext";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 export function ProjectCompareModal() {
   const { isCompareOpen, setIsCompareOpen } = usePortfolio();
+  useScrollLock(isCompareOpen);
   const [projectAId, setProjectAId] = useState<string>("cargoxpress");
   const [projectBId, setProjectBId] = useState<string>("tabtrack");
 
@@ -43,7 +45,7 @@ export function ProjectCompareModal() {
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-[120] flex items-center justify-center p-4 sm:p-6"
+      className="fixed inset-0 z-[120] flex items-center justify-center p-4 sm:p-6 overscroll-contain"
     >
       {/* Backdrop */}
       <motion.div
@@ -61,7 +63,8 @@ export function ProjectCompareModal() {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 16 }}
         transition={{ duration: 0.2 }}
-        className="relative w-full max-w-4xl max-h-[88vh] overflow-y-auto rounded-3xl bg-[#090b11] border border-white/15 p-6 sm:p-8 shadow-2xl z-10 no-scrollbar"
+        data-lenis-prevent="true"
+        className="relative w-full max-w-4xl max-h-[88dvh] overflow-y-auto overscroll-contain rounded-3xl bg-[#090b11] border border-white/15 p-6 sm:p-8 shadow-2xl z-10"
       >
         {/* Top hairline */}
         <div className="absolute top-0 left-12 right-12 h-[1px] bg-gradient-to-r from-transparent via-indigo-400/40 to-transparent pointer-events-none" />

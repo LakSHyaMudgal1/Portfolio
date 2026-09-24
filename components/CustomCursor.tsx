@@ -8,8 +8,6 @@ export function CustomCursor() {
   const [isHovered, setIsHovered] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
 
-  const [cursorText, setCursorText] = useState<string | null>(null);
-
   const cursorX = useSpring(0, { damping: 28, stiffness: 350 });
   const cursorY = useSpring(0, { damping: 28, stiffness: 350 });
 
@@ -37,26 +35,8 @@ export function CustomCursor() {
       const target = e.target as HTMLElement;
       if (!target) return;
 
-      const interactive = target.closest("a, button, [role='button'], input, textarea, .cursor-pointer, [data-cursor-interactive], [data-cursor]");
+      const interactive = target.closest("a, button, [role='button'], input, textarea, .cursor-pointer, [data-cursor-interactive]");
       setIsHovered(!!interactive);
-
-      // Check contextual cursor state
-      const cursorTarget = target.closest("[data-cursor]") as HTMLElement | null;
-      if (cursorTarget) {
-        setCursorText(cursorTarget.getAttribute("data-cursor"));
-      } else {
-        const ghLink = target.closest("a[href*='github.com']");
-        const extLink = target.closest("a[target='_blank']");
-        const archElement = target.closest("[data-arch-node], [data-replay-node]");
-
-        if (archElement) {
-          setCursorText("EXPLORE");
-        } else if (ghLink || extLink) {
-          setCursorText("OPEN");
-        } else {
-          setCursorText(null);
-        }
-      }
     };
 
     window.addEventListener("mousemove", moveCursor);
@@ -80,7 +60,7 @@ export function CustomCursor() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[100] overflow-hidden">
-      {/* Outer subtle ring / text capsule */}
+      {/* Outer subtle ring */}
       <motion.div
         style={{
           x: cursorX,
@@ -89,41 +69,30 @@ export function CustomCursor() {
           translateY: "-50%",
         }}
         animate={{
-          scale: isClicking ? 0.85 : isHovered ? 1.4 : 1,
-          opacity: isHovered ? 0.9 : 0.35,
-          borderColor: isHovered ? "rgba(56, 189, 248, 0.85)" : "rgba(255, 255, 255, 0.4)",
+          scale: isClicking ? 0.85 : isHovered ? 1.25 : 1,
+          opacity: isHovered ? 0.7 : 0.35,
+          borderColor: isHovered ? "rgba(56, 189, 248, 0.6)" : "rgba(255, 255, 255, 0.3)",
         }}
         transition={{ duration: 0.15 }}
-        className={`rounded-full border backdrop-blur-[1px] flex items-center justify-center transition-all ${
-          cursorText
-            ? "px-2.5 py-1 w-auto h-auto rounded-full bg-slate-950/80 border-sky-400 text-sky-300 font-mono text-[9px] tracking-wider uppercase shadow-lg shadow-sky-500/20"
-            : "w-8 h-8"
-        }`}
-      >
-        {cursorText && (
-          <span className="font-semibold select-none">
-            {cursorText}
-          </span>
-        )}
-      </motion.div>
+        className="w-7 h-7 rounded-full border backdrop-blur-[1px] flex items-center justify-center transition-all absolute"
+      />
 
-      {/* Center dot (only when no label) */}
-      {!cursorText && (
-        <motion.div
-          style={{
-            x: cursorX,
-            y: cursorY,
-            translateX: "-50%",
-            translateY: "-50%",
-          }}
-          animate={{
-            scale: isClicking ? 0.5 : isHovered ? 0 : 1,
-            opacity: isHovered ? 0 : 1,
-          }}
-          transition={{ duration: 0.1 }}
-          className="w-1.5 h-1.5 rounded-full bg-sky-400 absolute"
-        />
-      )}
+      {/* Center dot */}
+      <motion.div
+        style={{
+          x: cursorX,
+          y: cursorY,
+          translateX: "-50%",
+          translateY: "-50%",
+        }}
+        animate={{
+          scale: isClicking ? 0.6 : isHovered ? 1.2 : 1,
+          opacity: isHovered ? 0.9 : 0.8,
+        }}
+        transition={{ duration: 0.1 }}
+        className="w-1.5 h-1.5 rounded-full bg-sky-400 absolute"
+      />
     </div>
   );
 }
+

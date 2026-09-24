@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { X, Keyboard } from "lucide-react";
 import { usePortfolio } from "@/context/PortfolioContext";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 const SHORTCUTS = [
   { key: "Ctrl + K / ⌘K", desc: "Open global command palette with fuzzy search" },
@@ -24,6 +25,7 @@ const SHORTCUTS = [
 
 export function KeyboardShortcutsModal() {
   const { isShortcutsOpen, setIsShortcutsOpen } = usePortfolio();
+  useScrollLock(isShortcutsOpen);
 
   // Handle ESC
   useEffect(() => {
@@ -40,7 +42,7 @@ export function KeyboardShortcutsModal() {
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-[125] flex items-center justify-center p-4 sm:p-6"
+      className="fixed inset-0 z-[125] flex items-center justify-center p-4 sm:p-6 overscroll-contain"
     >
       {/* Backdrop */}
       <motion.div
@@ -58,7 +60,8 @@ export function KeyboardShortcutsModal() {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 16 }}
         transition={{ duration: 0.2 }}
-        className="relative w-full max-w-lg rounded-3xl bg-[#090b11] border border-white/15 p-6 sm:p-8 shadow-2xl z-10"
+        data-lenis-prevent="true"
+        className="relative w-full max-w-lg max-h-[85dvh] overflow-y-auto overscroll-contain rounded-3xl bg-[#090b11] border border-white/15 p-6 sm:p-8 shadow-2xl z-10"
       >
         {/* Header */}
         <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.08]">

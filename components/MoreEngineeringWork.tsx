@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { ChromeIcon, GithubIcon } from "@/components/Icons";
 import { SECONDARY_PROJECTS, SecondaryProject } from "@/lib/data";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 type FilterType = "ALL" | "FULL-STACK" | "SYSTEMS" | "ALGORITHMS";
 
@@ -878,6 +879,7 @@ function ProjectDetailsModal({
   project: SecondaryProject;
   onClose: () => void;
 }) {
+  useScrollLock(true);
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -890,7 +892,7 @@ function ProjectDetailsModal({
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6"
+      className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6 overscroll-contain"
     >
       {/* Backdrop */}
       <motion.div
@@ -908,7 +910,8 @@ function ProjectDetailsModal({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 16 }}
         transition={{ duration: 0.2 }}
-        className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl bg-[#0c0e15] border border-white/15 p-6 sm:p-8 shadow-2xl z-10 no-scrollbar"
+        data-lenis-prevent="true"
+        className="relative w-full max-w-2xl max-h-[85dvh] overflow-y-auto overscroll-contain rounded-3xl bg-[#0c0e15] border border-white/15 p-6 sm:p-8 shadow-2xl z-10"
       >
         {/* Top hairline */}
         <div className="absolute top-0 left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-sky-400/30 to-transparent pointer-events-none" />

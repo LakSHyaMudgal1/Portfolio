@@ -5,9 +5,11 @@ import { motion } from "framer-motion";
 import { X, ArrowDown, Check } from "lucide-react";
 import { PROJECT_STORIES } from "@/lib/data";
 import { usePortfolio } from "@/context/PortfolioContext";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 export function ProjectStoryModal() {
   const { selectedStoryProject, setSelectedStoryProject } = usePortfolio();
+  useScrollLock(!!selectedStoryProject);
 
   // Handle ESC
   useEffect(() => {
@@ -27,7 +29,7 @@ export function ProjectStoryModal() {
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-[120] flex items-center justify-center p-4 sm:p-6"
+      className="fixed inset-0 z-[120] flex items-center justify-center p-4 sm:p-6 overscroll-contain"
     >
       {/* Backdrop */}
       <motion.div
@@ -45,7 +47,8 @@ export function ProjectStoryModal() {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
         transition={{ duration: 0.25 }}
-        className="relative w-full max-w-3xl max-h-[88vh] overflow-y-auto rounded-3xl bg-[#090b11] border border-white/15 p-6 sm:p-10 shadow-2xl z-10 no-scrollbar"
+        data-lenis-prevent="true"
+        className="relative w-full max-w-3xl max-h-[88dvh] overflow-y-auto overscroll-contain rounded-3xl bg-[#090b11] border border-white/15 p-6 sm:p-10 shadow-2xl z-10"
       >
         {/* Top hairline */}
         <div className="absolute top-0 left-12 right-12 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent pointer-events-none" />

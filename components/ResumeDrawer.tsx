@@ -13,11 +13,13 @@ import {
 } from "lucide-react";
 import { PERSONAL_INFO, EXPERIENCES, PROJECTS, ACHIEVEMENTS, SKILL_CATEGORIES } from "@/lib/data";
 import { usePortfolio } from "@/context/PortfolioContext";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 type ResumeTab = "experience" | "projects" | "education" | "achievements" | "skills";
 
 export function ResumeDrawer() {
   const { isResumeDrawerOpen, setIsResumeDrawerOpen } = usePortfolio();
+  useScrollLock(isResumeDrawerOpen);
   const [activeTab, setActiveTab] = useState<ResumeTab>("experience");
   const [copied, setCopied] = useState(false);
 
@@ -67,11 +69,12 @@ Contact: ${PERSONAL_INFO.socials.email} | ${PERSONAL_INFO.socials.github}`;
         animate={{ x: 0 }}
         exit={{ x: "100%" }}
         transition={{ type: "spring", damping: 30, stiffness: 300 }}
-        className="relative w-full max-w-xl h-full bg-[#0a0d14] border-l border-white/10 p-6 sm:p-8 shadow-2xl z-10 flex flex-col justify-between overflow-y-auto no-scrollbar"
+        data-lenis-prevent="true"
+        className="relative w-full max-w-xl h-[100dvh] bg-[#0a0d14] border-l border-white/10 shadow-2xl z-10 flex flex-col justify-between overflow-hidden"
       >
-        <div>
-          {/* Top Actions & Header */}
-          <div className="flex items-start justify-between gap-4 pb-4 mb-6 border-b border-white/[0.08]">
+        {/* Top Actions & Header (Sticky Top) */}
+        <div className="p-6 sm:p-8 pb-4 border-b border-white/[0.08] shrink-0 bg-[#0a0d14]">
+          <div className="flex items-start justify-between gap-4 mb-4">
             <div>
               <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded border border-emerald-500/20 font-semibold uppercase tracking-widest">
                 INTERACTIVE RESUME EXPLORER
@@ -95,7 +98,7 @@ Contact: ${PERSONAL_INFO.socials.email} | ${PERSONAL_INFO.socials.github}`;
           </div>
 
           {/* Tab Switcher */}
-          <div className="flex items-center gap-1 p-1 rounded-xl bg-white/[0.03] border border-white/[0.08] mb-6 overflow-x-auto no-scrollbar text-xs font-mono">
+          <div className="flex items-center gap-1 p-1 rounded-xl bg-white/[0.03] border border-white/[0.08] overflow-x-auto no-scrollbar text-xs font-mono">
             {(
               [
                 { id: "experience", label: "Experience" },
@@ -120,8 +123,10 @@ Contact: ${PERSONAL_INFO.socials.email} | ${PERSONAL_INFO.socials.github}`;
             ))}
           </div>
 
-          {/* Active Tab Body */}
-          <div className="space-y-4">
+        </div>
+
+        {/* Active Tab Body (Scrollable Content Area) */}
+        <div data-lenis-prevent="true" className="flex-1 overflow-y-auto overscroll-contain p-6 sm:p-8 space-y-4">
             {activeTab === "experience" && (
               <div className="space-y-4">
                 {EXPERIENCES.map((exp, i) => (
@@ -236,11 +241,10 @@ Contact: ${PERSONAL_INFO.socials.email} | ${PERSONAL_INFO.socials.github}`;
                 ))}
               </div>
             )}
-          </div>
         </div>
 
-        {/* Drawer Bottom Actions */}
-        <div className="pt-6 mt-6 border-t border-white/[0.08] flex flex-wrap items-center gap-3 text-xs font-mono">
+        {/* Drawer Bottom Actions (Sticky Footer) */}
+        <div className="p-6 sm:p-8 pt-4 border-t border-white/[0.08] shrink-0 bg-[#0a0d14] flex flex-wrap items-center gap-3 text-xs font-mono">
           <button
             type="button"
             onClick={copySummary}
